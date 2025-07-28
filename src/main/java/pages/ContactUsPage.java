@@ -1,25 +1,18 @@
 package pages;
-import org.openqa.selenium.By;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class ContactUsPage {
-    private WebDriver driver;
 
     //Constructor
     public ContactUsPage(WebDriver driver){
-        this.driver = driver;
         PageFactory.initElements(driver, this);
     }
-
-    private String alertText;
-    private boolean messageValidation;
 
     @FindBy(id = "id_contact")
     private WebElement selectField;
@@ -81,54 +74,10 @@ public class ContactUsPage {
         buttonSend.click();
     }
 
-    /*
-    public boolean isTheSuccesMessageDisplayed(){
-        alertText = alertMessage.getText();
-        isDisplayed =alertText.contains(expectedMessage);
-        return isDisplayed;
-    }
-
-     */
-
-    /*
     //Original
     public boolean isTheMessageDisplayed(String expectedMessage){
-        alertText = alertMessage.getText();
-        isDisplayed = alertText.contains(expectedMessage);
-        return isDisplayed;
+        String alertText = alertMessage.getText();
+        return alertText.contains(expectedMessage);
     }
-
-     */
-
-    public boolean isTheMessageDisplayed2(String expectedMessage){
-        List<WebElement> listError = alertMessage.findElements(By.cssSelector("ol>li"));
-        if(!listError.isEmpty()){
-            for (WebElement error: listError)
-            {
-                String textError = error.getText();
-                messageValidation = textError.contains(expectedMessage);
-            }
-        } else {
-            alertText = alertMessage.getText();
-            messageValidation= alertText.contains(expectedMessage);
-        }
-        return messageValidation;
-    }
-
-    /*
-    public boolean isTheAlertDisplayed(){
-        alertText = alertError.getText();
-        isDisplayed = alertText.contains(expectedMessageError);
-        return  isDisplayed;
-    }
-
-
-
-    public boolean isMessageCorrect (String elementWithError){
-        String alertText = typeOfError.getText();
-        return alertText.contains(elementWithError);
-    }
-
-     */
 
 }
